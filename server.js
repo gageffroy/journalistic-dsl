@@ -5,7 +5,12 @@ var path = require('path');
 
 // get the html file
 app.get('/',function(req, res) {
-	res.sendFile(path.join(__dirname + '/interface/interface.html'));
+	var lang = req.acceptsLanguages('fr','en');
+	if (lang === 'fr') {
+		res.sendFile(path.join(__dirname + '/interface/interface_fr.html'));
+	}else{
+		res.sendFile(path.join(__dirname + '/interface/interface_en.html'));
+	}
 });
 
 // after the html, the navigator sends a request for the css
