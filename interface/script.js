@@ -8,3 +8,12 @@ var quill = new Quill('#editor', {
 	  },
 	  theme: 'snow'
 });
+
+var compile = document.getElementById('compile');
+
+compile.addEventListener('click', function() {
+	var delta = quill.getContents();
+	var l = quill.getLength();
+	quill.setContents(delta);
+	console.log(delta);
+});
