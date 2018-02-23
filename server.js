@@ -18,7 +18,7 @@ app.get('/interface.css',function(req, res) {
 	res.sendFile(path.join(__dirname + '/interface/interface.css'));
 });
 
-// after the html, the navigator sends a request for the css
+// after the css, the navigator sends a request for the js
 app.get('/script.js',function(req, res) {
 	res.sendFile(path.join(__dirname + '/interface/script.js'));
 });

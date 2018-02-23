@@ -5,20 +5,20 @@ var JournalisticDSLListener = require('./JournalisticDSLListener').JournalisticD
 var grammarFileName = "JournalisticDSL.g4";
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
-    "\u0003\u0011\u0015\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0003\u0002",
+    "\u0003\u0010\u0015\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0003\u0002",
     "\u0003\u0002\u0003\u0002\u0003\u0002\u0003\u0002\u0006\u0002\f\n\u0002",
     "\r\u0002\u000e\u0002\r\u0003\u0003\u0003\u0003\u0003\u0003\u0003\u0003",
     "\u0003\u0003\u0003\u0003\u0002\u0002\u0004\u0002\u0004\u0002\u0003\u0003",
-    "\u0002\u0006\u000e\u0002\u0017\u0002\u000b\u0003\u0002\u0002\u0002\u0004",
+    "\u0002\u0005\r\u0002\u0017\u0002\u000b\u0003\u0002\u0002\u0002\u0004",
     "\u000f\u0003\u0002\u0002\u0002\u0006\f\u0005\u0004\u0003\u0002\u0007",
-    "\f\u0007\u0010\u0002\u0002\b\f\u0007\u000f\u0002\u0002\t\f\u0007\u0003",
-    "\u0002\u0002\n\f\u0007\u0011\u0002\u0002\u000b\u0006\u0003\u0002\u0002",
+    "\f\u0007\u000f\u0002\u0002\b\f\u0007\u000e\u0002\u0002\t\f\u0007\u0003",
+    "\u0002\u0002\n\f\u0007\u0010\u0002\u0002\u000b\u0006\u0003\u0002\u0002",
     "\u0002\u000b\u0007\u0003\u0002\u0002\u0002\u000b\b\u0003\u0002\u0002",
     "\u0002\u000b\t\u0003\u0002\u0002\u0002\u000b\n\u0003\u0002\u0002\u0002",
     "\f\r\u0003\u0002\u0002\u0002\r\u000b\u0003\u0002\u0002\u0002\r\u000e",
     "\u0003\u0002\u0002\u0002\u000e\u0003\u0003\u0002\u0002\u0002\u000f\u0010",
     "\t\u0002\u0002\u0002\u0010\u0011\u0007\u0004\u0002\u0002\u0011\u0012",
-    "\u0005\u0002\u0002\u0002\u0012\u0013\u0007\u0005\u0002\u0002\u0013\u0005",
+    "\u0005\u0002\u0002\u0002\u0012\u0013\u0007\u0004\u0002\u0002\u0013\u0005",
     "\u0003\u0002\u0002\u0002\u0004\u000b\r"].join("");
 
 
@@ -28,11 +28,11 @@ var decisionsToDFA = atn.decisionToState.map( function(ds, index) { return new a
 
 var sharedContextCache = new antlr4.PredictionContextCache();
 
-var literalNames = [ null, "' '", "'\u2020'", "'\u2021'" ];
+var literalNames = [ null, "' '", "'\u00A7'" ];
 
-var symbolicNames = [ null, null, null, null, "ARTICLE", "INFO", "WHAT", 
-                      "WHO", "WHERE", "WHEN", "WHY", "AUTHOR", "TITLE", 
-                      "TEXT", "WORD", "ENDOFLINE" ];
+var symbolicNames = [ null, null, null, "ARTICLE", "INFO", "WHAT", "WHO", 
+                      "WHERE", "WHEN", "WHY", "AUTHOR", "TITLE", "TEXT", 
+                      "WORD", "ENDOFLINE" ];
 
 var ruleNames =  [ "text", "tag" ];
 
@@ -57,19 +57,18 @@ Object.defineProperty(JournalisticDSLParser.prototype, "atn", {
 JournalisticDSLParser.EOF = antlr4.Token.EOF;
 JournalisticDSLParser.T__0 = 1;
 JournalisticDSLParser.T__1 = 2;
-JournalisticDSLParser.T__2 = 3;
-JournalisticDSLParser.ARTICLE = 4;
-JournalisticDSLParser.INFO = 5;
-JournalisticDSLParser.WHAT = 6;
-JournalisticDSLParser.WHO = 7;
-JournalisticDSLParser.WHERE = 8;
-JournalisticDSLParser.WHEN = 9;
-JournalisticDSLParser.WHY = 10;
-JournalisticDSLParser.AUTHOR = 11;
-JournalisticDSLParser.TITLE = 12;
-JournalisticDSLParser.TEXT = 13;
-JournalisticDSLParser.WORD = 14;
-JournalisticDSLParser.ENDOFLINE = 15;
+JournalisticDSLParser.ARTICLE = 3;
+JournalisticDSLParser.INFO = 4;
+JournalisticDSLParser.WHAT = 5;
+JournalisticDSLParser.WHO = 6;
+JournalisticDSLParser.WHERE = 7;
+JournalisticDSLParser.WHEN = 8;
+JournalisticDSLParser.WHY = 9;
+JournalisticDSLParser.AUTHOR = 10;
+JournalisticDSLParser.TITLE = 11;
+JournalisticDSLParser.TEXT = 12;
+JournalisticDSLParser.WORD = 13;
+JournalisticDSLParser.ENDOFLINE = 14;
 
 JournalisticDSLParser.RULE_text = 0;
 JournalisticDSLParser.RULE_tag = 1;
@@ -311,7 +310,7 @@ JournalisticDSLParser.prototype.tag = function() {
         this.state = 15;
         this.text();
         this.state = 16;
-        this.match(JournalisticDSLParser.T__2);
+        this.match(JournalisticDSLParser.T__1);
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
 	        localctx.exception = re;

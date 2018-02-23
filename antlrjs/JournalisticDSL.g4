@@ -4,7 +4,7 @@ grammar JournalisticDSL;
  * Parser rules
  */
 text	: (tag | WORD | TEXT | ' ' | ENDOFLINE)+;
-tag 	: (WHAT|WHO|WHERE|WHEN|WHY|INFO|ARTICLE|AUTHOR|TITLE)'†'text'‡';
+tag 	: (WHAT|WHO|WHERE|WHEN|WHY|INFO|ARTICLE|AUTHOR|TITLE)'§'text'§';
 
 /*
  * Lexer rules
@@ -43,32 +43,31 @@ fragment UPPERCASE	: [A-Z];
 fragment LOWERCASE	: [a-z];
 fragment DIGIT	: [0-9];
 fragment ACCENT		: ('á'|'Á'|'à'|'À'|'â'|'Â'|'ä'|'Ä'|'å'|'Å'|'ã'|'Ã'|'ç'|'Ç'|'é'|'É'|'è'|'È'|'ê'|'Ê'|'ë'|'Ë'|'í'|'Í'|'ì'|'Ì'|'ï'|'Ï'|'ñ'|'Ñ'|'ó'|'Ó'|'ò'|'Ò'|'ô'|'Ô'|'ö'|'Ö'|'õ'|'Õ'|'š'|'Š'|'ú'|'Ú'|'ù'|'Ù'|'û'|'Û'|'ü'|'Ü'|'ý'|'Ý'|'ÿ'|'Ÿ'|'ž'|'Ž');
-fragment PUNCT		: ('-'|'_'|'\''|'\\'|','|'.'|';'|'('|')'|'!'|'¡'|'?'|'¿');
+fragment PUNCT		: ('-'|'_' | '\''|'\\'|','|'.'|';'|'('|')'|'!'|'¡'|'?'|'¿');
 fragment SYMBOL	: ('&' | '{' | '}');
 
 /* Keywords of the language */
-fragment SEP	: '¬';
-ARTICLE	: SEP A R T I C L E;
+ARTICLE	: '¬' A R T I C L E;
 
-INFO	: SEP I N F O;
+INFO	: '¬' I N F O;
 
-WHAT	: W SEP S U B J E C T;
+WHAT	: W '¬' S U B J E C T;
 
-WHO		: W SEP W H O;
+WHO		: W '¬' W H O;
 
-WHERE	: W SEP W H E R E;
+WHERE	: W '¬' W H E R E;
 
-WHEN	: W SEP W H E N;
+WHEN	: W '¬' W H E N;
 
-WHY		: W SEP W H Y;
+WHY		: W '¬' W H Y;
 
-AUTHOR	: SEP A U T H O R;
+AUTHOR	: '¬' A U T H O R;
 
-TITLE	: SEP T I T L E;
+TITLE	: '¬' T I T L E;
 
 /* Normal text (everything that is not {}) */
 TEXT	: ~[{}];
 
-WORD	: (UPPERCASE | LOWERCASE | DIGIT | ACCENT | PUNCT | SYMBOL | ' ')+;
+WORD	: (UPPERCASE | LOWERCASE | DIGIT | ACCENT | PUNCT | ' ')+;
 
 ENDOFLINE : ('\n' | '\r\n');

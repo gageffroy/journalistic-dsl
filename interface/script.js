@@ -1,3 +1,4 @@
+// Initialization of the editor
 var quill = new Quill('#editor', {
 	  modules: {
 		toolbar: [
@@ -9,8 +10,8 @@ var quill = new Quill('#editor', {
 	  theme: 'snow'
 });
 
+// Actions to execute when using the commands added to the context menu
 var compile = document.getElementById('compile');
-
 compile.addEventListener('click', function() {
 	var delta = quill.getContents();
 	var l = quill.getLength();
