@@ -5,14 +5,14 @@ var JournalisticDSLListener = require('./JournalisticDSLListener').JournalisticD
 var grammarFileName = "JournalisticDSL.g4";
 
 var serializedATN = ["\u0003\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964",
-    "\u0003\u0010\u0015\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0003\u0002",
+    "\u0003\u0011\u0015\u0004\u0002\t\u0002\u0004\u0003\t\u0003\u0003\u0002",
     "\u0003\u0002\u0003\u0002\u0003\u0002\u0003\u0002\u0006\u0002\f\n\u0002",
     "\r\u0002\u000e\u0002\r\u0003\u0003\u0003\u0003\u0003\u0003\u0003\u0003",
     "\u0003\u0003\u0003\u0003\u0002\u0002\u0004\u0002\u0004\u0002\u0003\u0003",
-    "\u0002\u0005\r\u0002\u0017\u0002\u000b\u0003\u0002\u0002\u0002\u0004",
+    "\u0002\u0005\u000e\u0002\u0017\u0002\u000b\u0003\u0002\u0002\u0002\u0004",
     "\u000f\u0003\u0002\u0002\u0002\u0006\f\u0005\u0004\u0003\u0002\u0007",
-    "\f\u0007\u000f\u0002\u0002\b\f\u0007\u000e\u0002\u0002\t\f\u0007\u0003",
-    "\u0002\u0002\n\f\u0007\u0010\u0002\u0002\u000b\u0006\u0003\u0002\u0002",
+    "\f\u0007\u0010\u0002\u0002\b\f\u0007\u000f\u0002\u0002\t\f\u0007\u0003",
+    "\u0002\u0002\n\f\u0007\u0011\u0002\u0002\u000b\u0006\u0003\u0002\u0002",
     "\u0002\u000b\u0007\u0003\u0002\u0002\u0002\u000b\b\u0003\u0002\u0002",
     "\u0002\u000b\t\u0003\u0002\u0002\u0002\u000b\n\u0003\u0002\u0002\u0002",
     "\f\r\u0003\u0002\u0002\u0002\r\u000b\u0003\u0002\u0002\u0002\r\u000e",
@@ -31,8 +31,8 @@ var sharedContextCache = new antlr4.PredictionContextCache();
 var literalNames = [ null, "' '", "'\u00A7'" ];
 
 var symbolicNames = [ null, null, null, "ARTICLE", "INFO", "WHAT", "WHO", 
-                      "WHERE", "WHEN", "WHY", "AUTHOR", "TITLE", "TEXT", 
-                      "WORD", "ENDOFLINE" ];
+                      "WHERE", "WHEN", "WHY", "AUTHOR", "TITLE", "SOURCE", 
+                      "TEXT", "WORD", "ENDOFLINE" ];
 
 var ruleNames =  [ "text", "tag" ];
 
@@ -66,9 +66,10 @@ JournalisticDSLParser.WHEN = 8;
 JournalisticDSLParser.WHY = 9;
 JournalisticDSLParser.AUTHOR = 10;
 JournalisticDSLParser.TITLE = 11;
-JournalisticDSLParser.TEXT = 12;
-JournalisticDSLParser.WORD = 13;
-JournalisticDSLParser.ENDOFLINE = 14;
+JournalisticDSLParser.SOURCE = 12;
+JournalisticDSLParser.TEXT = 13;
+JournalisticDSLParser.WORD = 14;
+JournalisticDSLParser.ENDOFLINE = 15;
 
 JournalisticDSLParser.RULE_text = 0;
 JournalisticDSLParser.RULE_tag = 1;
@@ -176,6 +177,7 @@ JournalisticDSLParser.prototype.text = function() {
             case JournalisticDSLParser.WHY:
             case JournalisticDSLParser.AUTHOR:
             case JournalisticDSLParser.TITLE:
+            case JournalisticDSLParser.SOURCE:
                 this.state = 4;
                 this.tag();
                 break;
@@ -201,7 +203,7 @@ JournalisticDSLParser.prototype.text = function() {
             this.state = 11; 
             this._errHandler.sync(this);
             _la = this._input.LA(1);
-        } while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << JournalisticDSLParser.T__0) | (1 << JournalisticDSLParser.ARTICLE) | (1 << JournalisticDSLParser.INFO) | (1 << JournalisticDSLParser.WHAT) | (1 << JournalisticDSLParser.WHO) | (1 << JournalisticDSLParser.WHERE) | (1 << JournalisticDSLParser.WHEN) | (1 << JournalisticDSLParser.WHY) | (1 << JournalisticDSLParser.AUTHOR) | (1 << JournalisticDSLParser.TITLE) | (1 << JournalisticDSLParser.TEXT) | (1 << JournalisticDSLParser.WORD) | (1 << JournalisticDSLParser.ENDOFLINE))) !== 0));
+        } while((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << JournalisticDSLParser.T__0) | (1 << JournalisticDSLParser.ARTICLE) | (1 << JournalisticDSLParser.INFO) | (1 << JournalisticDSLParser.WHAT) | (1 << JournalisticDSLParser.WHO) | (1 << JournalisticDSLParser.WHERE) | (1 << JournalisticDSLParser.WHEN) | (1 << JournalisticDSLParser.WHY) | (1 << JournalisticDSLParser.AUTHOR) | (1 << JournalisticDSLParser.TITLE) | (1 << JournalisticDSLParser.SOURCE) | (1 << JournalisticDSLParser.TEXT) | (1 << JournalisticDSLParser.WORD) | (1 << JournalisticDSLParser.ENDOFLINE))) !== 0));
     } catch (re) {
     	if(re instanceof antlr4.error.RecognitionException) {
 	        localctx.exception = re;
@@ -272,6 +274,10 @@ TagContext.prototype.TITLE = function() {
     return this.getToken(JournalisticDSLParser.TITLE, 0);
 };
 
+TagContext.prototype.SOURCE = function() {
+    return this.getToken(JournalisticDSLParser.SOURCE, 0);
+};
+
 TagContext.prototype.enterRule = function(listener) {
     if(listener instanceof JournalisticDSLListener ) {
         listener.enterTag(this);
@@ -298,7 +304,7 @@ JournalisticDSLParser.prototype.tag = function() {
         this.enterOuterAlt(localctx, 1);
         this.state = 13;
         _la = this._input.LA(1);
-        if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << JournalisticDSLParser.ARTICLE) | (1 << JournalisticDSLParser.INFO) | (1 << JournalisticDSLParser.WHAT) | (1 << JournalisticDSLParser.WHO) | (1 << JournalisticDSLParser.WHERE) | (1 << JournalisticDSLParser.WHEN) | (1 << JournalisticDSLParser.WHY) | (1 << JournalisticDSLParser.AUTHOR) | (1 << JournalisticDSLParser.TITLE))) !== 0))) {
+        if(!((((_la) & ~0x1f) == 0 && ((1 << _la) & ((1 << JournalisticDSLParser.ARTICLE) | (1 << JournalisticDSLParser.INFO) | (1 << JournalisticDSLParser.WHAT) | (1 << JournalisticDSLParser.WHO) | (1 << JournalisticDSLParser.WHERE) | (1 << JournalisticDSLParser.WHEN) | (1 << JournalisticDSLParser.WHY) | (1 << JournalisticDSLParser.AUTHOR) | (1 << JournalisticDSLParser.TITLE) | (1 << JournalisticDSLParser.SOURCE))) !== 0))) {
         this._errHandler.recoverInline(this);
         }
         else {
