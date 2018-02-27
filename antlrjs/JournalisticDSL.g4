@@ -4,7 +4,8 @@ grammar JournalisticDSL;
  * Parser rules
  */
 text	: (tag | WORD | TEXT | ' ' | ENDOFLINE)+;
-tag 	: (WHAT|WHO|WHERE|WHEN|WHY|INFO|ARTICLE|AUTHOR|TITLE|SOURCE)'§'text'§';
+element	: (WHAT|WHO|WHERE|WHEN|WHY|INFO|ARTICLE|AUTHOR|TITLE);
+tag 	: element'§'text'§';
 
 /*
  * Lexer rules
@@ -64,8 +65,6 @@ WHY		: W '¬' W H Y;
 AUTHOR	: '¬' A U T H O R;
 
 TITLE	: '¬' T I T L E;
-
-SOURCE	: '¬' S O U R C E;
 
 /* Normal text (everything that is not {}) */
 TEXT	: ~[{}];
