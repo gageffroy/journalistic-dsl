@@ -2,6 +2,7 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var antlr = require('./antlrjs/antlr.js');
 
 // get the html file
 app.get('/',function(req, res) {
