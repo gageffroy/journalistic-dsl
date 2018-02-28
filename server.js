@@ -1,8 +1,15 @@
+/**************************************************************************************
+ ***								NODE JS SERVER									***
+ **************************************************************************************/
+ 
 // require needed services
 var express = require('express');
 var app = express();
 var path = require('path');
 var antlr = require('./antlrjs/antlr.js');
+var $ = require('jquery');
+var jsdom = require('jsdom');
+var quill = require('quill');
 
 // get the html file
 app.get('/',function(req, res) {
@@ -27,3 +34,21 @@ app.get('/script.js',function(req, res) {
 // launching the server
 app.listen(8080);
 console.log("Listening on port 8080...");
+
+
+
+/**************************************************************************************
+ ***								 ANTLR CODE  									***
+ **************************************************************************************/
+
+// getting the text from the Quill editor
+var quill = new Quill('#editor', {
+	  modules: {
+		toolbar: [
+		  [{ header: [1, 2, false] }],
+		  ['bold', 'italic', 'underline'],
+		  ['image']
+		]
+	  },
+	  theme: 'snow'
+});
