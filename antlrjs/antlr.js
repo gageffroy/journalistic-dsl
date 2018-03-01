@@ -1,4 +1,3 @@
-const http = require('http');
 const antlr4 = require('antlr4/index');
 const JDSLLexer = require('./JournalisticDSLLexer.js');
 const JDSLParser = require('./JournalisticDSLParser.js');

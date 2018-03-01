@@ -6,10 +6,6 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var antlr = require('./antlrjs/antlr.js');
-var $ = require('jquery');
-var jsdom = require('jsdom');
-var quill = require('quill');
 
 // get the html file
 app.get('/',function(req, res) {
@@ -41,14 +37,24 @@ console.log("Listening on port 8080...");
  ***								 ANTLR CODE  									***
  **************************************************************************************/
 
-// getting the text from the Quill editor
-var quill = new Quill('#editor', {
-	  modules: {
-		toolbar: [
-		  [{ header: [1, 2, false] }],
-		  ['bold', 'italic', 'underline'],
-		  ['image']
-		]
-	  },
-	  theme: 'snow'
+// require needed services
+var antlr = require('./antlrjs/antlr.js');
+require('jsdom-global')();
+var quill = require('quill');
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+const dom = JSDOM.fromFile("./interface/interface_fr.html").then(dom => {
+	console.log(document.getElementById('#editor'));
+	var quillEditor = new quill(document.getElementById('#editor'), {
+		  modules: {
+			toolbar: [
+			  [{ header: [1, 2, false] }],
+			  ['bold', 'italic', 'underline'],
+			  ['image']
+			]
+		  },
+		  theme: 'snow'
+	});
 });
+
+// getting the text from the Quill editor
