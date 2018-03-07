@@ -6,15 +6,44 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var antlr = require('./antlrjs/antlr.js');
+require('jsdom-global')();
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+var editor = require('quill');
+var MutationObserver = require('mutation-observer');
+var dom;
+var quill;
 
 // get the html file
 app.get('/',function(req, res) {
 	var lang = req.acceptsLanguages('fr','en');
+	var html_file;
 	if (lang === 'fr') {
-		res.sendFile(path.join(__dirname + '/interface/interface_fr.html'));
+		html_file = '/interface/interface_fr.html';
 	}else{
-		res.sendFile(path.join(__dirname + '/interface/interface_en.html'));
+		html_file = '/interface/interface_en.html';
 	}
+	res.sendFile(path.join(__dirname + html_file));
+	dom = JSDOM.fromFile('.' + html_file)
+		.then(dom => {
+			console.log(dom.serialize());
+			console.log(dom.window.document.getElementById("editor"));
+			console.log(MutationObserver);
+			var container = dom.window.document.getElementById('editor');
+			quill = new editor(container);
+			/*, {
+			  modules: {
+				toolbar: [	
+				  [{ header: [1, 2, false] }],
+				  ['bold', 'italic', 'underline'],
+				  ['image']
+				]
+			  },
+			  theme: 'snow'
+			});*/
+		});
+	// console.log(dom.window.document.getElementById("editor"));
 });
 
 // after the html, the navigator sends a request for the css
@@ -36,25 +65,5 @@ console.log("Listening on port 8080...");
 /**************************************************************************************
  ***								 ANTLR CODE  									***
  **************************************************************************************/
-
-// require needed services
-var antlr = require('./antlrjs/antlr.js');
-require('jsdom-global')();
-var quill = require('quill');
-const jsdom = require('jsdom');
-const { JSDOM } = jsdom;
-const dom = JSDOM.fromFile("./interface/interface_fr.html").then(dom => {
-	console.log(document.getElementById('#editor'));
-	var quillEditor = new quill(document.getElementById('#editor'), {
-		  modules: {
-			toolbar: [
-			  [{ header: [1, 2, false] }],
-			  ['bold', 'italic', 'underline'],
-			  ['image']
-			]
-		  },
-		  theme: 'snow'
-	});
-});
 
 // getting the text from the Quill editor
